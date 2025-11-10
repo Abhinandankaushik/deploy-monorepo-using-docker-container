@@ -16,7 +16,7 @@ Bun.serve({
                     username: Math.random().toString(),
                     password: Math.random().toString()
                 }
-            })
+            }).then((d)=>console.log(d))
             ws.send(message);
         },
     },
