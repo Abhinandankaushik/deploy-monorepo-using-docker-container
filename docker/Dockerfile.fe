@@ -1,8 +1,8 @@
 FROM oven/bun:1
 
-WORKDIR /usr/src/app
+RUN apt-get update -y && apt-get install -y openssl
 
-ARG DATABASE_URL
+WORKDIR /usr/src/app
 
 COPY ./packages ./packages
 COPY ./bun.lock ./bun.lock
@@ -13,9 +13,12 @@ COPY ./turbo.json ./turbo.json
 COPY ./apps/web ./apps/web
 
 RUN bun install
-RUN bun run db:migrate
+RUN bun run db:generate
+
+ARG DATABASE_URL
 RUN DATABASE_URL=${DATABASE_URL} bun run build
+
 
 EXPOSE 3000
 
-CMD ["bun","run","start:web" ]
+CMD ["bun","run","start:web"]
