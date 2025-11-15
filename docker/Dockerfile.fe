@@ -12,6 +12,8 @@ COPY ./turbo.json ./turbo.json
 
 COPY ./apps/web ./apps/web
 
+COPY .env .env
+
 RUN bun install
 
 ARG DATABASE_URL

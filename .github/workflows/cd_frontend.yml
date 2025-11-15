@@ -20,7 +20,11 @@ jobs:
          username: ${{secrets.DOCKERHUB_USERNAME}}
          password: ${{secrets.DOCKERHUB_TOKEN}}  
       
-      - name: Build and push ##docker build docker push 
+      - name: Create empty .env for Next.js
+        run: |
+         echo "DATABASE_URL=${{secrets.DATABASE_URL}}" > .env
+ 
+      - name: Build and push 
         uses: docker/build-push-action@v4
         with:
          context: .
