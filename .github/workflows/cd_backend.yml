@@ -30,9 +30,9 @@ jobs:
          push: true
          tags: ${{secrets.DOCKERHUB_USERNAME}}/todo-app-backend:${{github.sha}}
      
-      # - name: Deploy to the VM
-      #   run: |
-      #     echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
-      #     chmod 700 /home/runner/ssh_key
-      #     ssh -o StrictHostKeyChecking=no -i ~/ssh_key ${{secrets.MY_SERVERIP}} -t "docker stop user_backend && docker run -d -p 8000:8000 ${{secrets.DOCKERHUB_USERNAME}}/todo-app-backend:${{github.sha}}" 
+      - name: Deploy to the VM
+        run: |
+          echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
+          chmod 700 /home/runner/ssh_key
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@${{secrets.MY_SERVERIP}} -t "docker stop user_backend && docker run -d -p 8000:8000 ${{secrets.DOCKERHUB_USERNAME}}/todo-app-backend:${{github.sha}}" 
        

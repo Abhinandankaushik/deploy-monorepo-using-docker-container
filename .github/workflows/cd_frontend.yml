@@ -23,10 +23,6 @@ jobs:
       - name: Create empty .env for Next.js
         run: |
          echo "DATABASE_URL=${{secrets.DATABASE_URL}}" &> .env
-         ls
-         pwd
-         ls -a
-         cat .env
  
       - name: Build and push 
         uses: docker/build-push-action@v4
