@@ -30,7 +30,7 @@ jobs:
          push: true
          tags: ${{secrets.DOCKERHUB_USERNAME}}/todo-app-backend:${{github.sha}}
      
-      - name: Deploy to the VM
+      - name:  Deploy to the VM
         run: |
           echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
