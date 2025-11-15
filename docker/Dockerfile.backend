@@ -12,7 +12,8 @@ COPY ./turbo.json ./turbo.json
 COPY ./apps/http-server ./apps/http-server
 
 RUN bun install
-RUN bun run db:generate //this is for local development (because in production db is already created)
+ARG DATABASE_URL
+RUN DATABASE_URL=${DATABASE_URL} bun run db:generate //this is for local development (because in production db is already created)
 
 EXPOSE 8081
 
