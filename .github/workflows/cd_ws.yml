@@ -25,5 +25,7 @@ jobs:
         with:
          context: .
          file: ./docker/Dockerfile.ws
+         build-args: |
+           DATABASE_URL=${{secrets.DATABASE_URL}}
          push: true
          tags: abhii1716/todo-app-websocket:${{github.sha}}
