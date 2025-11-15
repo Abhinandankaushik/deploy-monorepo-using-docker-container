@@ -12,7 +12,6 @@ COPY ./turbo.json ./turbo.json
 COPY ./apps/http-server ./apps/http-server
 
 RUN bun install
-RUN cat ~/.env
 RUN bun run db:generate
 
 EXPOSE 8081
