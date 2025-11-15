@@ -19,17 +19,14 @@ jobs:
         with:
          username: ${{secrets.DOCKERHUB_USERNAME}}
          password: ${{secrets.DOCKERHUB_TOKEN}}  
-      
-      - name: Create env to root DIR
-        run: |
-          echo "DATABASE_URL=${{secrets.DATABASE_URL}}" > .env
-          cat .env
           
       - name: Build and push ##docker build docker push 
         uses: docker/build-push-action@v4
         with:
          context: .
          file: ./docker/Dockerfile.backend
+         build-args: |
+          DATABASE_URL=${{secrets.DATABASE_URL}}
          push: true
          tags: ${{secrets.DOCKERHUB_USERNAME}}/todo-app-backend:${{github.sha}}
      

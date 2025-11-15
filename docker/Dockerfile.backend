@@ -11,6 +11,9 @@ COPY ./turbo.json ./turbo.json
 
 COPY ./apps/http-server ./apps/http-server
 
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
 RUN bun install
 RUN bun run db:generate
 
