@@ -17,6 +17,6 @@ ENV DATABASE_URL=$DATABASE_URL
 RUN bun install
 RUN bun run db:generate
 
-EXPOSE 8081
+EXPOSE 8000
 
 CMD ["bun","run","start:http" ]
